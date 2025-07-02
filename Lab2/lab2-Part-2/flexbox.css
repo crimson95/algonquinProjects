@@ -1,0 +1,73 @@
+/* set font and default margin and padding */
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* set header dark background, white text, centered text and padding 22px */
+header {
+    background-color: #333;
+    color:white;
+    padding: 22px;
+    text-align: center;
+}
+
+/* set flex container: displays child boxes in a row, allows wrapping,
+centers content with even spacing, max width 800px, centered horizontally */
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+/* box stying for all content sections: light background, border, rounded corners,
+padding, flex grow equally, minimum width ensures wrap on small screen */
+.container .box {
+    background-color: #f1f1f1;
+    border: #ddd solid 1px;
+    border-radius: 5px;
+    padding: 20px;
+    flex: 1;
+    min-width: 200px;
+}
+
+/* set the margin of footer paragraph to 20px*/
+footer p {
+    margin: 20px;
+}
+
+/* define a media query for screen widths less than or equal to 600px */
+@media screen and (max-width: 600px) {
+    .container{
+        width: 100%;
+    }
+}
+
+/* set the box color to red */
+.box.red {
+    background-color: red;
+}
+
+/* set the box color to blue */
+.box.blue {
+    background-color: blue;
+}
+
+/* set the box color  to green */
+.box.green {
+    background-color: green;
+}
+
+/* set the box color to yellow */
+.box.yellow {
+    background-color: yellow;
+}
+
+/* set the box color to orange */
+.box.orange {
+    background-color: orange;
+}
