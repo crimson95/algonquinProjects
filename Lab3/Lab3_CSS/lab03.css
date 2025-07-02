@@ -1,0 +1,131 @@
+/* name: Jay Chao
+file name: Lab03.html
+create date: 2025-06-21
+Section: CST 8285 section 312
+description: Lab 3: Semantic CSS */
+
+/* global setting */
+* {
+    font-family: sans-serif;
+    color: #333333;
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+/* body background */
+body {
+    background-color: #ddd78d;
+}
+
+/* header and footer styling */
+header, footer {
+    background-color: #60594d;
+    border: #333333 4px solid;
+    padding: 20px 10px 10px 10px;
+}
+
+/* main heading */
+h1 {
+    font-size: 36px;
+    color: #93a29b;
+}
+
+/* navigation links */
+a {
+    text-decoration: none;
+}
+
+nav {
+    font-size: 12pt;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+header nav a {
+    padding: 5px 12px;
+    background-color: whitesmoke;
+    border: #333333 4px solid;
+    border-radius: 20px;
+    margin: 15px 5px 0px 5px;
+}
+
+header nav a:hover {
+    color: #88635C;
+}
+
+/* section heading and paragraphs */
+section h2 {
+    font-weight: bold;
+    font-size: 20pt;
+    padding: 15px 0px;
+}
+
+section p {
+    font-size: 14pt;
+    margin: 10px 0px;
+}
+
+.general-paragraph {
+    text-align: left;
+}
+
+.quotation-paragraph {
+    background-color: #DCBF85;
+    text-align: center;
+    margin: 0px 20px;
+    padding: 10px;
+}
+
+/* lists */
+li {
+    font-size: larger;
+    text-align: left;
+    margin: 10px 0px;
+}
+
+ul > li::marker {
+    font-weight: bold;
+}
+
+/* image styling */
+img {
+    float: right;
+    width: 25%;
+    margin: 10px;
+}
+
+/* footer navigation and author text */
+footer nav a:hover {
+    color: #88635C;
+}
+
+footer nav {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+footer {
+    position: relative;
+    padding: 50px 0px 25px 0px;
+}
+
+footer p {
+    position: absolute;
+    font-style: italic;
+    font-size: 10pt;
+    color: #93a29b;
+    text-align: right;
+    right: 10px;
+    bottom: 10px;
+}
+
+/* responsive design (<= 600px) */
+@media screen and (max-width:600px) {
+	body {
+		width: 100%;
+	}
+}
