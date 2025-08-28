@@ -1,0 +1,345 @@
+/* name: Jay Chao
+create date: 2025-07-01
+section: CST 8285 section 312
+description: Assignment 1 CSS */
+
+/* body setting */
+body {
+  background-color: whitesmoke;
+  font-family: sans-serif;
+  color: #555;
+  margin: 0;
+  display: flex;  /* Enable full page flex layout */
+  flex-direction: column;
+  min-height: 100vh;  /* Make footer stick to bottom */
+}
+
+/* responsive design */
+.container {
+	margin: 0 auto;
+	max-width: 960px;
+	width: 100%;
+  flex: 1;   /* Allow content to expand */
+}
+
+/* navigation style */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px 0;
+}
+
+nav a {
+  padding: 5px 20px;
+  font-size: 12pt;
+  color: #888;
+  border: #888 2px dashed;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  border-color: #a50000;
+  color: #a50000;
+}
+
+nav a.active {
+  background-color: #a50000;
+  color: white;
+  border: #a50000 2px solid;
+}
+
+/* header and titles */
+header {
+  margin: 50px 0;
+}
+
+h1 {
+  font-weight: 1000;
+  font-size: 36pt;
+  text-transform: uppercase;
+  color: #a50000;
+  text-align: center;
+  margin: 20px 0px;
+}
+
+h4 {
+  font-size: 16pt;
+  color: #d26e6e;
+  margin: 20px 0 10px;
+}
+
+p {
+  font-size: 12pt;
+}
+
+/* about page */
+#about-me {
+  font-weight: 1000;
+  font-size: 36pt;
+  text-transform: uppercase;
+  color: #a50000;
+  text-align: right;
+  margin: 20px 165px 20px 0px;
+}
+
+#desc {
+  color: #ff9595;
+  margin: 20px;
+}
+
+#email {
+  color: #ff9595;
+  text-align: center;
+}
+
+#me {
+  width: 30%;
+  float: left;
+  margin-right: 30px;
+}
+
+#college {
+  color: #a50000;
+}
+
+/* social links section */
+.social-links ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+  gap: 30px;
+}
+
+.social-links li a {
+  font-size: 14pt;
+  color: #c34646;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.social-links li a:hover {
+  color: #888;
+}
+
+/* resume tables */
+#summary {
+  font-size: 14pt;
+  margin: 20px 50px;
+}
+
+.resume {
+  width: 90%;
+  margin: 30px auto;
+  border-collapse: collapse;
+  font-size: 14pt;
+}
+
+#skills {
+  width: 50%;
+  margin: 0 50px;
+  border-collapse: collapse;
+  font-size: 14pt;
+}
+
+.resume th,
+.resume td,
+#skills th,
+#skills td {
+  padding: 10px 16px;
+  text-align: left;
+}
+
+.resume th,
+#skills th {
+  background-color: #a50000;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.resume td:first-child,
+.resume th:first-child,
+#skills td:first-child,
+#skills th:first-child {
+  width: 200px;  /* label column width */
+}
+
+/* contact form */
+.contact-form {
+  max-width: 700px;
+  margin: 40px auto;
+  background-color: #e0e0e0;
+  padding: 24px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.contact-form fieldset {
+  border: 1px solid #aaa;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+.contact-form legend {
+  font-size: 18pt;
+  font-weight: bold;
+  color: #a50000;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-size: 14pt;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 8px 0;
+  font-size: 14pt;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.form-buttons button {
+  padding: 8px 20px;
+  font-size: 14pt;
+  border: none;
+  border-radius: 6px;
+  background-color: #a50000;
+  color: white;
+  cursor: pointer;
+}
+
+.form-buttons button:hover {
+  background-color: #7d0000;
+}
+
+/* navigation buttons in porjects */
+#prevBtn,
+#nextBtn {
+  background-color: #a50000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  min-width: 100px;
+  font-size: 12pt;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 30px;
+}
+
+#prevBtn:hover,
+#nextBtn:hover {
+  background-color: white;
+  color: #a50000;
+  border: 2px solid #a50000;
+}
+
+/* project section */
+.project-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 700px;
+}
+
+.project-container {
+  display: flex;
+  justify-content: center;
+}
+
+.project-card {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+  max-width: 900px;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.project-card h3 {
+  margin: 0 0 8px;
+  font-size: 18pt;
+  color: #a50000;
+}
+
+.project-card h5 {
+  margin: 0 0 8px;
+  font-size: 12pt;
+  color: #d26e6e;
+}
+
+.project-card p {
+  margin: 4px 0;
+  font-size: 12pt;
+  color: #444;
+}
+
+/* footer section */
+footer p {
+  font-size: 10pt;
+  text-align: center;
+  padding: 40px 0 20px;
+}
+
+	@media screen and (max-width: 1680px) {
+		.container {
+			width: 68em;
+		}
+	}
+
+	@media screen and (max-width: 1280px) {
+		.container {
+			width: calc(100% - 80px);
+		}
+	}
+
+	@media screen and (max-width: 980px) {
+		.container {
+			width: calc(100% - 100px);
+		}
+	}
+
+	@media screen and (max-width: 736px) {
+		.container {
+			width: calc(100% - 40px);
+		}
+	}

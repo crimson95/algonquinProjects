@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="academic projects">
+    <meta name="keywords" content="assignment1, cst8285">
+    <meta name="author" content="Jay Chao">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Projects</title>
+</head>
+<!-- Showcase your notable projects, including personal and professional ones.
+For each project, include a title, a brief description, the date completed, technologies used, 
+and screenshot or image related to the project. 
+List at least four of your projects (in web programming or any other project).
+Organize the projects within a container. Each project should be represented by a <div> element containing the title, 
+description, date, and an image.
+Implement JavaScript to allow users to move between projects. 
+Add "Next" and "Previous" buttons that show or hide project information one at a time, 
+creating a simple slideshow for browsing through projects.
+-->
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="resume.html">Resume</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Projects</h1>
+        <div class="project-slider">
+            <div class="slider-controls">
+                <button id="prevBtn" onclick="showPreviousProject()">Previous</button>
+                <button id="nextBtn" onclick="showNextProject()">Next</button>
+            </div>
+
+            <div class="project-container">
+                <div class="project-card">
+                    <img src="images/project1.png" alt="profolio website screenshot">
+                    <h3>Profolio website</h3>
+                    <h5>My profolio website, that contains all the graphic design project I've done.</h5>
+                    <p>2019.12.08 completed</p>
+                    <p>Made by HTML, css, JavaScript, bootstrap</p>
+                </div>
+                <div class="project-card">
+                    <img src="images/project2.png" alt="can design mockup">
+                    <h3>Can design mockup</h3>
+                    <h5>The can cover design on the mockup. </h5>
+                    <p>2019.10.04 completed</p>
+                    <p>Made by Photoshop, Illustrator, Indesign</p>
+                </div>
+                <div class="project-card">
+                    <img src="images/project3.png" alt="magazine design mockup">
+                    <h3>Magazine design mockup</h3>
+                    <h5>Nike Air advertising design on the magazine</h5>
+                    <p>2019.10.18 completed</p>
+                    <p>Made by Photoshop, Illustrator, Indesign</p>
+                </div>
+                <div class="project-card">
+                    <img src="images/project4.png" alt="stationary design mockup">
+                    <h3>Stationary design mockup</h3>
+                    <h5>Stationary design on the mockup.</h5>
+                    <p>2019.12.08 completed</p>
+                    <p>Made by Photoshop, Illustrator, Indesign</p>
+                </div>
+                <div class="project-card">
+                    <img src="images/project5.png" alt="gum package design mockup">
+                    <h3>Gum package design</h3>
+                    <h5>Gum package design on the mockup.</h5>
+                    <p>2019.11.25 completed</p>
+                    <p>Made by Photoshop, Illustrator, Indesign</p>
+                </div>
+                <div class="project-card">
+                    <h3>NutritionInfo OOP Application</h3>
+                    <h5>Built an OOP-based Java NutritionInfo application with computeFatPercentage, computeIsHighFiber, 
+                    and computeIsSourceCalcium methods, formatted label output, and Unit tests.</h5>
+                    <p>2025.06.12 completed</p>
+                    <p>Made by Java Eclipse</p>
+                </div>
+                <div class="project-card">
+                    <h3>Round-Robin Scheduler</h3>
+                    <h5>Developed a Java round-robin scheduler in Eclipse generates formatted 
+                    two-row pairings for eight participants across unique rounds.</h5>
+                    <p>2025.05.14 completed</p>
+                    <p>Made by Java Eclipse</p>
+                </div>
+                <div class="project-card">
+                    <h3>Responsive website</h3>
+                    <h5>Built a responsive, semantic HTML5 webpage using external CSS and Flexbox 
+                    to demonstrate modern layout, accessiblity, and styling techniques.</h5>
+                    <p>2025.06.30 completed</p>
+                    <p>Made by HTML, CSS</p>
+                </div>
+                <div class="project-card">
+                    <h3>Personal Portfolio website</h3>
+                    <h5>Developed a responsive personal website using HTML, CSS and JavaScript, featuring a self-introduction,
+                    resume, project portfolio, and contact information.</h5>
+                    <p>2025.07.06 completed</p>
+                    <p>Made by HTML, CSS, JavaScript</p>
+                </div>
+            </div>
+        </div>
+    </div>
+            <footer>
+                <p>Copyright &copy; 2025 Jay Chao. All rights reserved.</p>
+            </footer>
+            
+            <script>
+                let currentProjectIndex = 0;
+                const projects = document.querySelectorAll('.project-card');
+
+                function showProject(index) {
+                    projects.forEach((project, i) => {
+                        project.style.display = (i === index) ? 'block' : 'none';
+                    });
+                }
+
+                function showNextProject() {
+                    currentProjectIndex = (currentProjectIndex + 1) % projects.length;
+                    showProject(currentProjectIndex);
+                }
+
+                function showPreviousProject() {
+                    currentProjectIndex = (currentProjectIndex - 1 + projects.length) % projects.length;
+                    showProject(currentProjectIndex);
+                }
+
+                // Initialize the project display
+                showProject(currentProjectIndex);
+            </script>
+</body>
+</html>
