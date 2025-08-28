@@ -1,0 +1,36 @@
+/* name: Jay Chao
+file name: DML.txt
+create date: 2025-08-04
+Section: CST 8285 section 312
+description: database script for create datas */
+
+-- Insert users
+INSERT INTO Users (username, email, password, user_id) VALUES
+('alice', 'alice@example.com', 'alice_pwd1', 1),
+('billy', 'bob@example.com', 'billy_pwd2', 2),
+('charlie', 'charlie@example.com', 'charlie_pwd3', 3),
+('diana', 'diana@example.com', 'diana_pwd4', 4),
+('emile', 'emile@example.com', 'emile_pwd5', 5);
+
+-- Insert books
+INSERT INTO Books (title, author, genre, description, user_id) VALUES
+('The Great Gatsby', 'F. Scott Fitzgerald', 'Classic', 'A classic set in the Jazz Age.', 1),
+('To Kill a Mockingbird', 'Harper Lee', 'Classic', 'A story about justice and race.', 5),
+('1984', 'George Orwell', 'Dystopian', 'A dystopian novel about surveillance.', 2),
+('Brave New World', 'Aldous Huxley', 'Dystopian', 'A vision of a controlled future.', 2),
+('Pride and Prejudice', 'Jane Austen', 'Romance', 'A love story with social commentary.', 3),
+('The Catcher in the Rye', 'J.D. Salinger', 'Fiction', 'Teen angst and identity.', 3),
+('Moby Dick', 'Herman Melville', 'Adventure', 'The pursuit of a white whale.', 4),
+('War and Peace', 'Leo Tolstoy', 'Historical', 'A saga of war and peace.', 5),
+('Hamlet', 'William Shakespeare', 'Tragedy', 'A prince''s revenge.', 1),
+('The Hobbit', 'J.R.R. Tolkien', 'Fantasy', 'A hobbit''s unexpected journey.', 1),
+('Harry Potter and the Sorcerer''s Stone', 'J.K. Rowling', 'Fantasy', 'The boy who lived begins his journey.', 2),
+('The Fellowship of the Ring', 'J.R.R. Tolkien', 'Fantasy', 'The first in the Lord of the Rings.', 2),
+('Frankenstein', 'Mary Shelley', 'Horror', 'The monster and the creator.', 3),
+('Dracula', 'Bram Stoker', 'Horror', 'The original vampire tale.', 3),
+('The Da Vinci Code', 'Dan Brown', 'Thriller', 'A symbologist uncovers secrets.', 5),
+('Angels & Demons', 'Dan Brown', 'Thriller', 'A secret society and the Vatican.', 4),
+('Clean Code', 'Robert C. Martin', 'Programming', 'Writing maintainable code.', 1),
+('The Pragmatic Programmer', 'Andrew Hunt', 'Programming', 'Tips for better coding.', 2),
+('The Alchemist', 'Paulo Coelho', 'Philosophical', 'A journey of destiny.', 3),
+('Sapiens', 'Yuval Noah Harari', 'Non-Fiction', 'A history of humankind.', 4);

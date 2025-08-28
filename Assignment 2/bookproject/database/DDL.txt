@@ -1,0 +1,26 @@
+/* name: Jay Chao
+file name: DDL.txt
+create date: 2025-08-04
+Section: CST 8285 section 312
+description: database script for create tables */
+
+-- create tables
+DROP TABLE IF EXISTS Users, Books;
+
+CREATE TABLE Users (
+    user_id		INT 			AUTO_INCREMENT 	PRIMARY KEY,
+    username 	VARCHAR(50) 	NOT NULL,
+    email 		VARCHAR(100) 	NOT NULL 		UNIQUE,
+    password 	VARCHAR(255) 	NOT NULL
+);
+
+
+CREATE TABLE Books (
+    book_id 	INT 		AUTO_INCREMENT	 PRIMARY KEY,
+    title 	VARCHAR(100) 	NOT NULL,
+    author 	VARCHAR(100) 	NOT NULL,
+    genre 	VARCHAR(50),
+    description TEXT,
+    user_id 	INT 		NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
