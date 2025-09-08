@@ -1,0 +1,165 @@
+CREATE OR REPLACE PACKAGE BODY game_pkg IS
+
+  PROCEDURE change_version(p_game_id IN NUMBER, p_version_string IN VARCHAR2) IS
+  
+    -- =============================================
+  -- Procedure: change_version
+  -- Purpose  : Update a game's version history.
+  --            Ends the current version if exists,
+  --            inserts new version string if necessary,
+  --            and logs a new GAME_VERSION record.
+  -- Params   :
+  --   p_game_id         - the GAME_ID of the game to update
+  --   p_version_string  - the new version string to set
+  -- =============================================
+  
+    v_new_version_id   NUMBER;
+    v_count            NUMBER;
+    v_current_version  VARCHAR2(100);
+  BEGIN
+    -- Step 0: Try to fetch the current version of the game
+    BEGIN
+      SELECT v.VERSION_STRING INTO v_current_version
+      FROM GAME_VERSION gv
+      JOIN VERSION v ON gv.VERSION_ID = v.VERSION_ID
+      WHERE gv.GAME_ID = p_game_id AND gv.END_DATE IS NULL;
+
+      -- If the current version is the same, skip update
+      IF v_current_version = p_version_string THEN
+        RAISE_APPLICATION_ERROR(-20002, 'Version has not changed. No update needed.');
+      END IF;
+    EXCEPTION
+      WHEN NO_DATA_FOUND THEN
+        -- No current version exists (this is likely the first one), so proceed with insert
+        NULL;
+    END;
+
+    -- Step 1: End any current version if one exists
+    UPDATE GAME_VERSION
+    SET END_DATE = SYSDATE
+    WHERE GAME_ID = p_game_id AND END_DATE IS NULL;
+
+    -- Step 2: Check if the new version string already exists
+    SELECT COUNT(*) INTO v_count
+    FROM VERSION
+    WHERE VERSION_STRING = p_version_string;
+
+    IF v_count = 0 THEN
+      -- Version doesn't exist yet, insert it
+      INSERT INTO VERSION (VERSION_ID, VERSION_STRING)
+      VALUES (seq_version_id.NEXTVAL, p_version_string);
+
+      -- Retrieve the newly inserted VERSION_ID
+      SELECT VERSION_ID INTO v_new_version_id
+      FROM VERSION
+      WHERE VERSION_STRING = p_version_string;
+    ELSE
+      -- Version already exists, just get its ID
+      SELECT VERSION_ID INTO v_new_version_id
+      FROM VERSION
+      WHERE VERSION_STRING = p_version_string;
+    END IF;
+
+    -- Step 3: Insert new version history record
+    INSERT INTO GAME_VERSION (
+      ID,
+      GAME_ID,
+      VERSION_ID,
+      START_DATE,
+      END_DATE,
+      NOTES
+    )
+    VALUES (
+      seq_game_ver_id.NEXTVAL,
+      p_game_id,
+      v_new_version_id,
+      SYSDATE,
+      NULL,  -- Active version has no end date
+      NULL   -- No notes for now
+    );
+  END change_version;
+
+  -- =============================================
+  -- Function: new_game
+  -- Purpose : Insert a new game with its metadata and initial version.
+  -- Returns : Newly created GAME_ID
+  -- Params  :
+  --   p_name           - game name
+  --   p_release_date   - game release date
+  --   p_publisher_name - publisher's name
+  --   p_genre_name     - genre name
+  --   p_version_string - initial version string
+  -- =============================================
+
+  FUNCTION new_game(
+    p_name            IN VARCHAR2,
+    p_release_date    IN DATE,
+    p_publisher_name  IN VARCHAR2,
+    p_genre_name      IN VARCHAR2,
+    p_version_string  IN VARCHAR2
+  ) RETURN NUMBER IS
+    v_game_id       NUMBER;
+    v_publisher_id  NUMBER;
+    v_genre_id      NUMBER;
+    v_count         NUMBER;
+    v_exists        NUMBER;
+  BEGIN
+    -- Step 0: Prevent inserting exact duplicate game+version
+    SELECT COUNT(*) INTO v_exists
+    FROM GAME g
+    JOIN GAME_VERSION gv ON g.GAME_ID = gv.GAME_ID
+    JOIN VERSION v ON gv.VERSION_ID = v.VERSION_ID
+    WHERE g.NAME = p_name
+      AND g.RELEASE_DATE = p_release_date
+      AND v.VERSION_STRING = p_version_string;
+
+    IF v_exists > 0 THEN
+      RAISE_APPLICATION_ERROR(-20001, 'This game with the same version already exists.');
+    END IF;
+
+    -- Step 1: Check or insert publisher
+    SELECT COUNT(*) INTO v_count
+    FROM PUBLISHER
+    WHERE NAME = p_publisher_name;
+
+    IF v_count = 0 THEN
+      INSERT INTO PUBLISHER (PUBLISHER_ID, NAME)
+      VALUES (seq_publisher_id.NEXTVAL, p_publisher_name);
+    END IF;
+
+    SELECT PUBLISHER_ID INTO v_publisher_id
+    FROM PUBLISHER
+    WHERE NAME = p_publisher_name;
+
+    -- Step 2: Check or insert genre
+    SELECT COUNT(*) INTO v_count
+    FROM GENRE
+    WHERE GENRE_NAME = p_genre_name;
+
+    IF v_count = 0 THEN
+      INSERT INTO GENRE (GENRE_ID, GENRE_NAME)
+      VALUES (seq_genre_id.NEXTVAL, p_genre_name);
+    END IF;
+
+    SELECT GENRE_ID INTO v_genre_id
+    FROM GENRE
+    WHERE GENRE_NAME = p_genre_name;
+
+    -- Step 3: Insert new game record
+    INSERT INTO GAME (
+      GAME_ID, NAME, RELEASE_DATE, PUBLISHER_ID, GENRE_ID
+    )
+    VALUES (
+      seq_game_id.NEXTVAL, p_name, p_release_date, v_publisher_id, v_genre_id
+    )
+    RETURNING GAME_ID INTO v_game_id;
+
+    -- Step 4: Initialize version history using the procedure
+    change_version(v_game_id, p_version_string);
+
+    -- Step 5: Return newly created GAME_ID
+    RETURN v_game_id;
+  END new_game;
+
+END game_pkg;
+/

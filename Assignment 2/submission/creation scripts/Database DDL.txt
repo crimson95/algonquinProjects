@@ -1,0 +1,201 @@
+/* Database Assignment2 
+ * DDL Create table and Sequence
+*/
+
+-- Safely drop all sequences if they exist.
+-- This script is provided by ChatGPT (OpenAI assistant) to emulate
+-- "DROP SEQUENCE IF EXISTS" functionality in Oracle.
+
+-- Drop seq_game_id
+BEGIN
+  EXECUTE IMMEDIATE 'DROP SEQUENCE seq_game_id';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN  -- -2289 = sequence does not exist
+      RAISE;
+    END IF;
+END;
+/
+
+-- Drop seq_version_id
+BEGIN
+  EXECUTE IMMEDIATE 'DROP SEQUENCE seq_version_id';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN
+      RAISE;
+    END IF;
+END;
+/
+
+-- Drop seq_publisher_id
+BEGIN
+  EXECUTE IMMEDIATE 'DROP SEQUENCE seq_publisher_id';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN
+      RAISE;
+    END IF;
+END;
+/
+
+-- Drop seq_genre_id
+BEGIN
+  EXECUTE IMMEDIATE 'DROP SEQUENCE seq_genre_id';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN
+      RAISE;
+    END IF;
+END;
+/
+
+-- Drop seq_game_ver_id
+BEGIN
+  EXECUTE IMMEDIATE 'DROP SEQUENCE seq_game_ver_id';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN
+      RAISE;
+    END IF;
+END;
+/
+
+-- Safely drop all required tables if they exist, avoiding ORA-00942 errors.
+-- This code is provided by ChatGPT (OpenAI assistant) to emulate
+-- "DROP TABLE IF EXISTS" functionality in Oracle.
+
+-- Drop GAME_VERSION table
+BEGIN
+  EXECUTE IMMEDIATE 'DROP TABLE GAME_VERSION';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN
+      RAISE;
+    END IF;
+END;
+/
+
+-- Drop GAME table
+BEGIN
+  EXECUTE IMMEDIATE 'DROP TABLE GAME';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN
+      RAISE;
+    END IF;
+END;
+/
+
+-- Drop PUBLISHER table
+BEGIN
+  EXECUTE IMMEDIATE 'DROP TABLE PUBLISHER';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN
+      RAISE;
+    END IF;
+END;
+/
+
+-- Drop GENRE table
+BEGIN
+  EXECUTE IMMEDIATE 'DROP TABLE GENRE';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN
+      RAISE;
+    END IF;
+END;
+/
+
+-- Drop VERSION table
+BEGIN
+  EXECUTE IMMEDIATE 'DROP TABLE VERSION';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -942 THEN
+      RAISE;
+    END IF;
+END;
+/
+
+--Sequence
+-- 1.Sequence for GAME table
+CREATE SEQUENCE seq_game_id 
+START WITH 1         -- Start from 1 to avoid duplicate IDs
+INCREMENT BY 1         -- Increase by 1 for each new entry
+NOCACHE                -- No caching of sequence values
+NOCYCLE;               -- Do not cycle when max value is reached
+
+-- 2.Sequence for PUBLISHER table
+CREATE SEQUENCE seq_publisher_id 
+START WITH 1 
+INCREMENT BY 1
+NOCACHE 
+NOCYCLE;
+
+-- 3.Sequence for GENRE table
+CREATE SEQUENCE seq_genre_id 
+START WITH 1 
+INCREMENT BY 1
+NOCACHE
+NOCYCLE;
+
+-- 4.Sequence for VERSION table
+CREATE SEQUENCE 
+seq_version_id 
+START WITH 1 
+INCREMENT BY 1
+NOCACHE
+NOCYCLE;
+
+-- 5.Sequence for GAME VERSION tracing table
+CREATE SEQUENCE seq_game_ver_id
+START WITH 1 
+INCREMENT BY 1
+NOCACHE
+NOCYCLE;
+
+--Tables
+-- 1. PUBLISHER table
+CREATE TABLE PUBLISHER (
+  PUBLISHER_ID NUMBER PRIMARY KEY,
+  NAME VARCHAR2(100) NOT NULL
+);
+
+-- 2. GENRE table
+CREATE TABLE GENRE (
+  GENRE_ID NUMBER PRIMARY KEY,
+  GENRE_NAME VARCHAR2(50) NOT NULL
+);
+
+-- 3. VERSION table
+CREATE TABLE VERSION (
+  VERSION_ID NUMBER PRIMARY KEY,
+  VERSION_STRING VARCHAR2(20) NOT NULL
+);
+
+-- 4. GAME table
+CREATE TABLE GAME (
+  GAME_ID NUMBER PRIMARY KEY,
+  NAME VARCHAR2(100) NOT NULL,
+  RELEASE_DATE DATE,
+  PUBLISHER_ID NUMBER,
+  GENRE_ID NUMBER,
+  CONSTRAINT fk_game_publisher FOREIGN KEY (PUBLISHER_ID) REFERENCES PUBLISHER(PUBLISHER_ID),
+  CONSTRAINT fk_game_genre FOREIGN KEY (GENRE_ID) REFERENCES GENRE(GENRE_ID)
+);
+
+-- 5. GAME_VERSION table include version history, many to many
+CREATE TABLE GAME_VERSION (
+  ID NUMBER PRIMARY KEY,
+  GAME_ID NUMBER NOT NULL,
+  VERSION_ID NUMBER NOT NULL,
+  START_DATE DATE NOT NULL,
+  END_DATE DATE,
+  -- Optional field to store notes about version changes, as suggested in the assignment extension
+  NOTES VARCHAR2(255),
+  CONSTRAINT fk_game_version_game FOREIGN KEY (GAME_ID) REFERENCES GAME(GAME_ID),
+  CONSTRAINT fk_game_version_version FOREIGN KEY (VERSION_ID) REFERENCES VERSION(VERSION_ID)
+);

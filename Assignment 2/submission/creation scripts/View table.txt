@@ -1,0 +1,17 @@
+--  Creat a View table
+
+CREATE OR REPLACE VIEW VIEW_GAME AS
+SELECT
+  g.GAME_ID,                      
+  g.NAME,                          
+  g.RELEASE_DATE,                
+  p.NAME AS PUBLISHER_NAME,       
+  ge.GENRE_NAME,                   
+  v.VERSION_STRING,                
+  gv.START_DATE                    
+FROM GAME g
+JOIN PUBLISHER p ON g.PUBLISHER_ID = p.PUBLISHER_ID
+JOIN GENRE ge ON g.GENRE_ID = ge.GENRE_ID
+JOIN GAME_VERSION gv ON g.GAME_ID = gv.GAME_ID
+JOIN VERSION v ON gv.VERSION_ID = v.VERSION_ID
+WHERE gv.END_DATE IS NULL;

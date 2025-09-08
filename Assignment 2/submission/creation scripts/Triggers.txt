@@ -1,0 +1,96 @@
+-- ================================================
+-- Trigger: trg_insert_view_game
+-- Purpose: Handles inserts into view_game by calling the game_pkg.new_game function.
+-- Inserts into related tables: GAME, PUBLISHER, GENRE, VERSION, GAME_VERSION
+-- ================================================
+
+-- Trigger for inserting into view_game
+CREATE OR REPLACE TRIGGER trg_insert_view_game
+INSTEAD OF INSERT ON view_game
+FOR EACH ROW -- Executes once per row (mandatory for INSTEAD OF triggers)
+DECLARE
+  v_new_game_id NUMBER; -- To receive the GAME_ID returned from new_game()
+BEGIN
+
+  -- Call the packaged function to create the game
+  v_new_game_id := game_pkg.new_game(
+    p_name            => :NEW.name,
+    p_release_date    => :NEW.release_date,
+    p_publisher_name  => :NEW.publisher_name,
+    p_genre_name      => :NEW.genre_name,
+    p_version_string  => :NEW.version_string
+  );
+END;
+/
+
+-- ================================================
+-- Trigger: trg_game_update
+-- Purpose: Updates version history if the version string changes.
+-- Uses: Calls game_pkg.change_version() to handle version tracking
+-- ================================================
+
+-- INSTEAD OF UPDATE Trigger for version change
+CREATE OR REPLACE TRIGGER trg_game_update
+INSTEAD OF UPDATE ON view_game
+FOR EACH ROW
+BEGIN
+  -- Check if version has actually changed
+  IF :NEW.version_string IS NOT NULL AND :NEW.version_string != :OLD.version_string THEN
+    -- Call the procedure to update version history
+    game_pkg.change_version(
+      p_game_id        => :OLD.game_id,
+      p_version_string => :NEW.version_string
+    );
+  END IF;
+END;
+/
+
+-- ================================================
+-- Trigger: trg_delete_view_game
+-- Purpose: Handles deletion of a game through view_game.
+-- Steps:
+--   1. Remove all version records for the game
+--   2. Delete the game itself
+--   3. Clean up any unreferenced VERSION, PUBLISHER, and GENRE entries
+-- Includes error handling for safety in Access/Oracle environment
+-- ================================================
+
+-- INSTEAD OF DELETE Trigger for cascade cleanup
+CREATE OR REPLACE TRIGGER trg_delete_view_game
+INSTEAD OF DELETE ON view_game
+FOR EACH ROW
+BEGIN
+  BEGIN
+    -- Step 1: Delete all version records for this game
+    DELETE FROM GAME_VERSION
+    WHERE GAME_ID = :OLD.game_id;
+
+    -- Step 2: Delete the game record itself
+    DELETE FROM GAME
+    WHERE GAME_ID = :OLD.game_id;
+
+    -- Step 3: Delete unused versions
+    DELETE FROM VERSION v
+    WHERE NOT EXISTS (
+      SELECT 1 FROM GAME_VERSION gv WHERE gv.VERSION_ID = v.VERSION_ID
+    );
+
+    -- Step 4: Delete unused publishers
+    DELETE FROM PUBLISHER p
+    WHERE NOT EXISTS (
+      SELECT 1 FROM GAME g WHERE g.PUBLISHER_ID = p.PUBLISHER_ID
+    );
+
+    -- Step 5: Delete unused genres
+    DELETE FROM GENRE g
+    WHERE NOT EXISTS (
+      SELECT 1 FROM GAME gm WHERE gm.GENRE_ID = g.GENRE_ID
+    );
+	-- Catch all exceptions to prevent Oracle from aborting silently in Access
+  EXCEPTION
+    WHEN OTHERS THEN
+      RAISE_APPLICATION_ERROR(-20099, 'Delete failed: ' || SQLERRM);
+  END;
+END;
+/
+
