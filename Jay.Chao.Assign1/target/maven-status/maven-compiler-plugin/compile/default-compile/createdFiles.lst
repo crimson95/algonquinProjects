@@ -1,0 +1,10 @@
+businesslayer\OttawaPostalService.class
+dataaccesslayer\OttawaPostalDAO.class
+transferobjects\JoinDTO.class
+dataaccesslayer\DBConnection.class
+businesslayer\JoinService.class
+transferobjects\OttawaPostalDTO.class
+dataaccesslayer\JoinDAO.class
+PostalCodeApp.class
+dataaccesslayer\JoinDAOImpl.class
+dataaccesslayer\OttawaPostalDAOImpl.class

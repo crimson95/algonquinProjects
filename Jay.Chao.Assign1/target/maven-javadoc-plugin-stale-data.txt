@@ -1,0 +1,58 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+@argfile
+--no-fonts
+-classpath
+'C:/Users/cchao/.m2/repository/com/mysql/mysql-connector-j/9.4.0/mysql-connector-j-9.4.0.jar;C:/Users/cchao/.m2/repository/com/google/protobuf/protobuf-java/4.31.1/protobuf-java-4.31.1.jar'
+-encoding
+'UTF-8'
+-protected
+--release
+24
+-sourcepath
+'C:/Users/cchao/Documents/NetBeansProjects/Jay.Chao.Assign1/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/cchao/Documents/NetBeansProjects/Jay.Chao.Assign1/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Jay.Chao.Assign1 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'Jay.Chao.Assign1 1.0-SNAPSHOT API'
+businesslayer
+dataaccesslayer
+transferobjects
+'C:/Users/cchao/Documents/NetBeansProjects/Jay.Chao.Assign1/src/main/java/PostalCodeApp.java'
+C:\Users\cchao\.m2\repository\com\mysql\mysql-connector-j\9.4.0\mysql-connector-j-9.4.0.jar = 1758480658941
+C:\Users\cchao\.m2\repository\com\google\protobuf\protobuf-java\4.31.1\protobuf-java-4.31.1.jar = 1758480659060
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\src\main\java\database.properties = 1760045621784
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\src\main\java\evontario.insert.sql = 1759440083342
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\src\main\java\PostalCodeApp.java = 1760046356547
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\src\main\java = 1760043635296
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\allclasses-index.html = 1760046418973
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\allpackages-index.html = 1760046418979
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\element-list = 1760046418822
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\help-doc.html = 1760046419027
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\index-all.html = 1760046419012
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\index.html = 1760046418949
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\member-search-index.js = 1760046418989
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\module-search-index.js = 1760046418982
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\overview-summary.html = 1760046419022
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\overview-tree.html = 1760046418942
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\package-search-index.js = 1760046418985
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\package-summary.html = 1760046418831
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\package-tree.html = 1760046418836
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\package-use.html = 1760046418925
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\PostalCodeApp.html = 1760046418819
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\search.html = 1760046419016
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\tag-search-index.js = 1760046418992
+C:\Users\cchao\Documents\NetBeansProjects\Jay.Chao.Assign1\target\reports\apidocs\type-search-index.js = 1760046418987
