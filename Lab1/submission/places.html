@@ -1,0 +1,106 @@
+<!--name: Jay Chao
+file name: places.html
+create date: 2025-05-14
+Section: CST 8285 section 312
+description: this page is to create an user info form -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="an user info form">
+    <meta name="keywords" content="lab1, cst8285">
+    <meta name="author" content="Jay Chao">
+    <title>Places Form</title>
+</head>
+<body>
+    <div>
+    <header>
+        <p>This is Page 2, Click <a href="hometown.html">here</a> to go to Page 1.</p>
+        <h1>Share your information about my home town</h1>
+    </header>
+
+    <form action ="Lab1Form.php" method ="post" enctype ="text/plain">
+    <fieldset>
+        <legend>1. User Info</legend>
+        <p><label for="firstname">First Name</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label for="lastname">Last Name</label><br>
+        <input type="text" id="firstname" name="firstname" value="Jay" readonly>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" id="lastname" name="lastname" maxlength="10"></p>
+
+        <p><label for="email">Email</label><br>
+        <input type="text" id="email" name="email" placeholder="format for email is xxx@yyy.zzz" size="55"></p>
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+        <legend>2. Location</legend>
+        <p><label for="address">Address</label><br>
+        <input type="text" id="address" name="address" size="55"></p>
+
+        <p><label for="city">City</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label for="state">State</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label for="zip">Zip</label><br>
+        <input type="text" id="city" name="city">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" id="state" name="state" size="10">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" id="zip" name="zip" size="15"></p>
+
+        <p><label for="phone">Phone</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label for="country">Country</label><br>
+        <input type="text" id="phone" name="phone" placeholder="NNN-NNN-NNNN">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <select id="country" name="country">
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+            <option value="china">China</option>
+            <option value="japan">Japan</option>
+            <option value="france">France</option>
+            <option value="uk">UK</option>
+            <option value="spain">Spain</option>
+            <option value="taiwan">Taiwan</option>
+            <option value="turkey">Turkey</option>
+            <option value="india">India</option>
+        </select></p>
+
+        <p>Continent<br>
+        <input type="radio" id="na" name="northamerica" value="northamerica">
+        <label for="na">North America</label><br>
+        <input type="radio" id="eu" name="europe" value="europe">
+        <label for="eu">Europe</label><br>
+        <input type="radio" id="sa" name="southamerica" value="southamerica">
+        <label for="sa">South America</label></p>
+    </fieldset>
+
+    <br>
+
+    <fieldset>
+        <legend>3. Favorite Place</legend>
+        <p><label for="favoriteplace">Favorite Place: </label>
+        <input type="text" id="favoriteplace" name="favoriteplace"></p>
+
+        <p><label for="reason">Why do you love this place? </label><br>
+        <textarea id="reason" name="reason" rows="10" cols="50">
+        </textarea></p>
+    </fieldset>
+
+    <p><input type="submit" value="Send">
+    <input type="reset" value="Clear information"></p>
+    </form>
+
+    <footer><p>Jay Chao, 2025 Copyright©</p></footer>
+    </div>
+</body>
+</html>
